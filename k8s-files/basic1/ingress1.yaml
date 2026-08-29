@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flask-ingress   
+spec:
+  ingressClassName: traefik         # Explicitly tells K8s to use your Rancher Traefik controller
+  rules:
+  - host: flask-app.local            # Your custom local learning domain name
+    http:
+      paths:
+      - path: /                      # Routes main traffic to home endpoint
+        pathType: Prefix
+        backend:
+          service:
+            name: flask-service      # Must match your service name exactly
+            port:
+              number: 80             # Must match your service's internal port
+      - path: /api                   # Routes API traffic to your secondary endpoint
+        pathType: Prefix
+        backend:
+          service:
+            name: flask-service
+            port:
+              number: 80
+
