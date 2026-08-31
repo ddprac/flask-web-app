@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: flask-deployment
+  name: flask-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: flask-deployment
+    spec:
+      containers:
+      - image: flask-app:v1
+        name: flask-app
+        ports:
+        - containerPort: 8000
+        readinessProbe:
+          httpGet:
+            port: 8000
+            path: /ready
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            port: 8000
+            path: /ready
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        resources: {}
+status: {}

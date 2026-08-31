@@ -7,6 +7,7 @@ A simple Python Flask application structured for transitioning from Docker conta
 To test the application on your host machine inside the virtual environment:
 
 ```bash
+python3 m venv .venv
 # 1. Activate your virtual environment
 source venv/bin/activate  # On Windows: .\venv\Scripts\Activate.ps1
 

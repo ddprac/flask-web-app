@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: flask-pod
+  name: flask-pod
+spec:
+  containers:
+  - image: flask-app:v1
+    name: flask-pod
+    imagePullPolicy: IfNotPresent
+    readinessProbe:
+      httpGet:
+        path: /ready
+        port: 8000
+      initialDelaySeconds: 10
+      periodSeconds: 10
+    livenessProbe:
+      httpGet:
+        path: /live
+        port: 8000
+      initialDelaySeconds: 10
+      periodSeconds: 10
+    ports:
+    - containerPort: 8000
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
