@@ -12,3 +12,4 @@ __pycache__/
 # Ignore OS-specific tracking files
 .DS_Store
 Thumbs.db
+.talismanrc
