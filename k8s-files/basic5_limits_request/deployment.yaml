@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: flask-demo
+  name: flask-demo
+  namespace: resource
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-demo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: flask-demo
+    spec:
+      containers:
+      - image: flask-app:v1
+        name: flask-app
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+status: {}
