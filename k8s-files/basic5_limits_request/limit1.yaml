@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: strict-limits
+  namespace: quota
+spec:
+  limits:
+  - max:
+     memory: "100Mi"
+    min:
+     memory: "10Mi"
+    type: Container
