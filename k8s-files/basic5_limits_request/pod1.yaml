@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: oom-demo
+  name: oom-demo
+spec:
+  containers:
+  - image: polinux/stress
+    name: oom-demo
+    command: ["stress"]
+    args: ["--vm","1","--vm-bytes","250M"]
+    resources:
+      limits:
+        memory: "50Mi"
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
